@@ -1,4 +1,2 @@
-# oim3690 - Web Technologies
+# oim3690-
 Course work for OIM3690
-## About Me
-Name - Gavin Aydelotte
