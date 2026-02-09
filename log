@@ -19,3 +19,6 @@ I was absent due to a medical procedure
 
 # Class 5 Log
 We learned many different functions and strings of code, however I am still struggling with deciphering them in real time
+
+# Class 6 Log
+I was absent due to a wedding
