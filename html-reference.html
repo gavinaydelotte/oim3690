@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="HTML reference guide covering headings, text types, and semantic elements.">
+		<title>HTML Reference Guide</title>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="styles.css">
+		<style>
+			.ref-section { margin-bottom: 2.5rem; }
+			.ref-section h2 { border-bottom: 2px solid #e0e0e0; padding-bottom: 0.5rem; }
+			.example-box {
+				background: #f8f9fa;
+				border: 1px solid #dee2e6;
+				border-radius: 8px;
+				padding: 1.5rem;
+				margin: 1rem 0;
+			}
+			.code-block {
+				background: #1e1e2e;
+				color: #cdd6f4;
+				border-radius: 8px;
+				padding: 1rem 1.25rem;
+				font-family: "Courier New", Courier, monospace;
+				font-size: 0.9rem;
+				overflow-x: auto;
+				margin: 0.75rem 0;
+				white-space: pre;
+			}
+			.tag { color: #89b4fa; }
+			.attr { color: #f9e2af; }
+			.val { color: #a6e3a1; }
+			.note {
+				background: #eef6ff;
+				border-left: 4px solid #3b82f6;
+				padding: 0.75rem 1rem;
+				border-radius: 0 8px 8px 0;
+				margin: 1rem 0;
+				font-size: 0.95rem;
+			}
+			table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+			th, td { text-align: left; padding: 0.6rem 1rem; border-bottom: 1px solid #e0e0e0; }
+			th { background: #f0f0f0; font-weight: 600; }
+		</style>
+	</head>
+	<body>
+		<nav class="nav">
+			<div class="nav-inner">
+				<a href="index.html" class="nav-brand">GA</a>
+				<div class="nav-links">
+					<a href="index.html">Home</a>
+					<a href="#headings">Headings</a>
+					<a href="#text">Text</a>
+					<a href="#semantic">Semantic</a>
+				</div>
+			</div>
+		</nav>
+
+		<main>
+			<section class="hero" style="padding: 3rem 0;">
+				<div class="hero-content">
+					<h1>HTML Reference Guide</h1>
+					<p class="subtitle">A beginner-friendly overview of headings, common element types, and semantic HTML.</p>
+				</div>
+			</section>
+
+			<div class="container">
+
+				<!-- ===================== HEADINGS ===================== -->
+				<section id="headings" class="ref-section section">
+					<h2 class="section-title">Headings</h2>
+					<div class="card">
+						<p>HTML provides six levels of headings, from <strong>&lt;h1&gt;</strong> (the most important) down to <strong>&lt;h6&gt;</strong> (the least important). Headings create a hierarchy that helps users and search engines understand the structure of your page.</p>
+
+						<div class="note">Use only one <strong>&lt;h1&gt;</strong> per page. It should describe the main topic. Then use <strong>&lt;h2&gt;</strong> for major sections, <strong>&lt;h3&gt;</strong> for sub-sections, and so on.</div>
+
+						<div class="example-box">
+							<h1 style="font-size:2rem; margin:0.25rem 0;">h1 — Main Page Title</h1>
+							<h2 style="font-size:1.5rem; margin:0.25rem 0;">h2 — Section Heading</h2>
+							<h3 style="font-size:1.25rem; margin:0.25rem 0;">h3 — Sub-section Heading</h3>
+							<h4 style="font-size:1.1rem; margin:0.25rem 0;">h4 — Detail Heading</h4>
+							<h5 style="font-size:1rem; margin:0.25rem 0;">h5 — Minor Heading</h5>
+							<h6 style="font-size:0.85rem; margin:0.25rem 0;">h6 — Smallest Heading</h6>
+						</div>
+
+						<p><strong>Code:</strong></p>
+						<div class="code-block"><span class="tag">&lt;h1&gt;</span>Main Page Title<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Section Heading<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Sub-section Heading<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span>Detail Heading<span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span>Minor Heading<span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span>Smallest Heading<span class="tag">&lt;/h6&gt;</span></div>
+					</div>
+				</section>
+
+				<!-- ===================== TEXT & COMMON TYPES ===================== -->
+				<section id="text" class="ref-section section">
+					<h2 class="section-title">Common HTML Element Types</h2>
+
+					<!-- Paragraphs & Line Breaks -->
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Paragraphs &amp; Line Breaks</h3>
+						<p>The <strong>&lt;p&gt;</strong> tag wraps a block of text into a paragraph. Use <strong>&lt;br&gt;</strong> to insert a single line break within a paragraph.</p>
+						<div class="code-block"><span class="tag">&lt;p&gt;</span>This is a paragraph of text.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>First line.<span class="tag">&lt;br&gt;</span>Second line in the same paragraph.<span class="tag">&lt;/p&gt;</span></div>
+					</div>
+
+					<!-- Bold, Italic, Underline -->
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Text Formatting</h3>
+						<table>
+							<tr><th>Tag</th><th>Purpose</th><th>Result</th></tr>
+							<tr><td><code>&lt;strong&gt;</code></td><td>Important text (bold)</td><td><strong>bold text</strong></td></tr>
+							<tr><td><code>&lt;em&gt;</code></td><td>Emphasized text (italic)</td><td><em>italic text</em></td></tr>
+							<tr><td><code>&lt;u&gt;</code></td><td>Underlined text</td><td><u>underlined text</u></td></tr>
+							<tr><td><code>&lt;mark&gt;</code></td><td>Highlighted text</td><td><mark>highlighted text</mark></td></tr>
+							<tr><td><code>&lt;small&gt;</code></td><td>Smaller text (fine print)</td><td><small>small text</small></td></tr>
+							<tr><td><code>&lt;del&gt;</code></td><td>Deleted / strikethrough text</td><td><del>deleted text</del></td></tr>
+							<tr><td><code>&lt;code&gt;</code></td><td>Inline code snippet</td><td><code>console.log()</code></td></tr>
+						</table>
+						<div class="code-block"><span class="tag">&lt;strong&gt;</span>bold text<span class="tag">&lt;/strong&gt;</span>
+<span class="tag">&lt;em&gt;</span>italic text<span class="tag">&lt;/em&gt;</span>
+<span class="tag">&lt;mark&gt;</span>highlighted text<span class="tag">&lt;/mark&gt;</span></div>
+					</div>
+
+					<!-- Links -->
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Links</h3>
+						<p>The <strong>&lt;a&gt;</strong> (anchor) tag creates clickable hyperlinks. The <code>href</code> attribute sets the destination URL.</p>
+						<div class="example-box">
+							<a href="https://www.babson.edu" target="_blank">Visit Babson College</a>
+						</div>
+						<div class="code-block"><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"https://www.babson.edu"</span><span class="tag">&gt;</span>Visit Babson College<span class="tag">&lt;/a&gt;</span></div>
+					</div>
+
+					<!-- Images -->
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Images</h3>
+						<p>The <strong>&lt;img&gt;</strong> tag embeds an image. It is self-closing (no end tag). The <code>src</code> attribute points to the image file, and <code>alt</code> provides a text description for accessibility.</p>
+						<div class="code-block"><span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"images/photo.jpg"</span> <span class="attr">alt</span>=<span class="val">"A description of the image"</span><span class="tag">&gt;</span></div>
+					</div>
+
+					<!-- Lists -->
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Lists</h3>
+						<p><strong>&lt;ul&gt;</strong> creates an unordered (bulleted) list. <strong>&lt;ol&gt;</strong> creates an ordered (numbered) list. Each item inside uses <strong>&lt;li&gt;</strong>.</p>
+						<div class="example-box" style="display:flex; gap:3rem; flex-wrap:wrap;">
+							<div>
+								<p><strong>Unordered List:</strong></p>
+								<ul>
+									<li>HTML</li>
+									<li>CSS</li>
+									<li>JavaScript</li>
+								</ul>
+							</div>
+							<div>
+								<p><strong>Ordered List:</strong></p>
+								<ol>
+									<li>Plan</li>
+									<li>Build</li>
+									<li>Launch</li>
+								</ol>
+							</div>
+						</div>
+						<div class="code-block"><span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>HTML<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>CSS<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Plan<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Build<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></div>
+					</div>
+
+					<!-- Div & Span -->
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Div &amp; Span (Generic Containers)</h3>
+						<p><strong>&lt;div&gt;</strong> is a block-level container used to group elements together (takes up the full width). <strong>&lt;span&gt;</strong> is an inline container used to style a small piece of text without breaking the flow.</p>
+						<div class="code-block"><span class="tag">&lt;div&gt;</span>
+  <span class="tag">&lt;p&gt;</span>This paragraph is inside a div.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;p&gt;</span>This word is <span class="tag">&lt;span</span> <span class="attr">style</span>=<span class="val">"color:red;"</span><span class="tag">&gt;</span>red<span class="tag">&lt;/span&gt;</span>.<span class="tag">&lt;/p&gt;</span></div>
+					</div>
+				</section>
+
+				<!-- ===================== SEMANTIC HTML ===================== -->
+				<section id="semantic" class="ref-section section">
+					<h2 class="section-title">Semantic HTML</h2>
+					<div class="card" style="margin-bottom:1.5rem;">
+						<p>Semantic elements clearly describe their meaning to both the browser and the developer. Instead of using generic <code>&lt;div&gt;</code> tags for everything, semantic tags tell you <em>what kind of content</em> is inside.</p>
+
+						<div class="note"><strong>Why does it matter?</strong> Semantic HTML improves accessibility (screen readers understand your page), SEO (search engines rank structured content higher), and readability (other developers can follow your code more easily).</div>
+					</div>
+
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Page Structure Elements</h3>
+						<table>
+							<tr><th>Tag</th><th>Description</th></tr>
+							<tr><td><code>&lt;header&gt;</code></td><td>Introductory content at the top of a page or section. Typically contains a logo, site title, and navigation.</td></tr>
+							<tr><td><code>&lt;nav&gt;</code></td><td>A set of navigation links. Use it for your main menu, sidebar links, or breadcrumbs.</td></tr>
+							<tr><td><code>&lt;main&gt;</code></td><td>The primary content of the page. There should only be one <code>&lt;main&gt;</code> per page.</td></tr>
+							<tr><td><code>&lt;footer&gt;</code></td><td>Content at the bottom of a page or section. Usually contains copyright info, contact links, or legal text.</td></tr>
+						</table>
+					</div>
+
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Content Grouping Elements</h3>
+						<table>
+							<tr><th>Tag</th><th>Description</th></tr>
+							<tr><td><code>&lt;section&gt;</code></td><td>A thematic group of content, usually with its own heading. Example: an "About" section or "Contact" section.</td></tr>
+							<tr><td><code>&lt;article&gt;</code></td><td>A self-contained piece of content that could stand alone (e.g., a blog post, news story, or comment).</td></tr>
+							<tr><td><code>&lt;aside&gt;</code></td><td>Content that is related but separate from the main content — like a sidebar, pull quote, or advertisement.</td></tr>
+							<tr><td><code>&lt;figure&gt;</code></td><td>Self-contained content like an image, diagram, or code snippet, often paired with <code>&lt;figcaption&gt;</code>.</td></tr>
+							<tr><td><code>&lt;figcaption&gt;</code></td><td>A caption or description for the content inside a <code>&lt;figure&gt;</code>.</td></tr>
+						</table>
+					</div>
+
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Full Semantic Page Example</h3>
+						<p>Here is how a typical page is structured using semantic elements:</p>
+						<div class="code-block"><span class="tag">&lt;header&gt;</span>
+  <span class="tag">&lt;nav&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"/"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"/about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;section&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Latest News<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;article&gt;</span>
+      <span class="tag">&lt;h3&gt;</span>Article Title<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Article content goes here.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/article&gt;</span>
+  <span class="tag">&lt;/section&gt;</span>
+
+  <span class="tag">&lt;aside&gt;</span>
+    <span class="tag">&lt;h3&gt;</span>Related Links<span class="tag">&lt;/h3&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Sidebar content here.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/aside&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+  <span class="tag">&lt;p&gt;</span>&amp;copy; 2025 My Website<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></div>
+					</div>
+
+					<div class="card" style="margin-bottom:1.5rem;">
+						<h3>Semantic vs. Non-Semantic Comparison</h3>
+						<div style="display:flex; gap:2rem; flex-wrap:wrap;">
+							<div style="flex:1; min-width:250px;">
+								<p><strong>Non-Semantic (harder to read):</strong></p>
+								<div class="code-block"><span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"header"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"nav"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"main"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="val">"footer"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></div>
+							</div>
+							<div style="flex:1; min-width:250px;">
+								<p><strong>Semantic (clear and meaningful):</strong></p>
+								<div class="code-block"><span class="tag">&lt;header&gt;</span>...<span class="tag">&lt;/header&gt;</span>
+<span class="tag">&lt;nav&gt;</span>...<span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;main&gt;</span>...<span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;footer&gt;</span>...<span class="tag">&lt;/footer&gt;</span></div>
+							</div>
+						</div>
+						<div class="note">Both examples produce the same visual result, but the semantic version is easier to understand, better for accessibility, and better for SEO.</div>
+					</div>
+				</section>
+
+			</div>
+		</main>
+
+		<footer class="footer">
+			<div class="container">
+				<p>&copy; 2025 Gavin Aydelotte. Built from scratch.</p>
+			</div>
+		</footer>
+	</body>
+</html>
