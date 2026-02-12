@@ -1,0 +1,12 @@
+h1 {
+    color: bisque;
+}
+/* ── Global Styles ── */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+}
+h2 {
+    color: thistle
+}
