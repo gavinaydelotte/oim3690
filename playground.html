@@ -3,15 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Page</title>
+    <title>Playground | Gavin Aydelotte</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/stylesdemo.css">
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; }
+        h1, h2 { color: #0f172a; }
+        h2 { margin-top: 40px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+        section { margin-bottom: 40px; }
+
+        /* iFrame embeds */
+        .embed-wrap {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        .embed-wrap iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        /* Audio / Video */
+        audio, video { display: block; width: 100%; border-radius: 8px; margin-top: 8px; }
+
+        /* FAQ */
+        details {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+        }
+        details[open] { background: #f0fdfa; }
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+        }
+        summary::before { content: '+ '; color: #2b9aa3; }
+        details[open] summary::before { content: '- '; }
+        details p { margin-top: 10px; color: #475569; }
+
+        /* Canvas */
+        canvas { display: block; border-radius: 50%; margin-top: 8px; }
+    </style>
 </head>
 <body>
-<h1>This is a demo page</h1>
-<h2>About</h2>
-<p>I am a student at Babson College</p>
-<a href="https://www.babson.edu">Babson</a>
+
+<h1>Playground</h1>
+<p>A sandbox for trying out HTML elements.</p>
 <img src="images/headshot.jpg" alt="Gavin Aydelotte" class="avatar">
+
+<!-- ── 1. YouTube embed ── -->
+<section>
+    <h2>YouTube — Captain Jack Sparrow</h2>
+    <div class="embed-wrap">
+        <iframe
+            src="https://www.youtube.com/embed/Ntd0Fwl_wac"
+            title="Captain Jack Sparrow — Pirates of the Caribbean"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+<!-- ── 2. Google Map of Babson Campus ── -->
+<section>
+    <h2>Google Map — Babson Campus</h2>
+    <div class="embed-wrap">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.4914065196!2d-71.26747!3d42.29953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e38639e3fcb2dd%3A0xe2e67a8dcba2b9a2!2sBabson%20College!5e0!3m2!1sen!2sus!4v1699900000000"
+            title="Babson College campus map"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+<!-- ── 3. Audio & Video ── -->
+<section>
+    <h2>Audio &amp; Video</h2>
+
+    <h3>Audio</h3>
+    <audio controls>
+        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <h3 style="margin-top:20px">Video</h3>
+    <video controls width="100%" poster="https://www.w3schools.com/html/mov_bbb.jpg">
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video element.
+    </video>
+</section>
+
+<!-- ── 4. Collapsible FAQ ── -->
+<section>
+    <h2>FAQ — <code>&lt;details&gt;</code> &amp; <code>&lt;summary&gt;</code></h2>
+
+    <details>
+        <summary>Where do you go to school?</summary>
+        <p>I attend Babson College in Wellesley, Massachusetts, where I study business and entrepreneurship.</p>
+    </details>
+
+    <details>
+        <summary>What are you interested in?</summary>
+        <p>Entrepreneurship, web development, basketball, and business strategy — among other things.</p>
+    </details>
+
+    <details>
+        <summary>How can I contact you?</summary>
+        <p>You can reach me at <a href="mailto:gaydelotte1@babson.edu">gaydelotte1@babson.edu</a> or via the <a href="contact.html">contact page</a>.</p>
+    </details>
+</section>
+
+<!-- ── 5. Canvas basketball ── -->
+<section>
+    <h2>Canvas — Basketball</h2>
+    <canvas id="basketball" width="200" height="200"></canvas>
+    <script>
+        const canvas = document.getElementById('basketball');
+        const ctx = canvas.getContext('2d');
+        const cx = 100, cy = 100, r = 90;
+
+        // Orange ball
+        const grad = ctx.createRadialGradient(cx - 25, cy - 25, 10, cx, cy, r);
+        grad.addColorStop(0, '#ff9a3c');
+        grad.addColorStop(1, '#c85b00');
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Black seams
+        ctx.strokeStyle = '#1a1a1a';
+        ctx.lineWidth = 3;
+
+        // Vertical seam
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - r);
+        ctx.bezierCurveTo(cx + 40, cy - 30, cx + 40, cy + 30, cx, cy + r);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - r);
+        ctx.bezierCurveTo(cx - 40, cy - 30, cx - 40, cy + 30, cx, cy + r);
+        ctx.stroke();
+
+        // Horizontal seam
+        ctx.beginPath();
+        ctx.moveTo(cx - r, cy);
+        ctx.bezierCurveTo(cx - 30, cy - 40, cx + 30, cy - 40, cx + r, cy);
+        ctx.stroke();
+
+        // Clip to circle so seams stay inside
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+
+        // Outline
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.strokeStyle = '#1a1a1a';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    </script>
+</section>
+
 </body>
 </html>
-
