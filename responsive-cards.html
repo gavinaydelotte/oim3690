@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Interests & Hobbies — Gavin Aydelotte">
+		<title>Cards | Gavin Aydelotte</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: {
+							accent: '#2b9aa3',
+							'accent-dark': '#1f7a82',
+						},
+						fontFamily: {
+							sans: ['Poppins', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+						},
+					},
+				},
+			}
+		</script>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-gradient-to-b from-amber-50 to-teal-50 min-h-screen font-sans text-slate-900">
+
+		<!-- Nav -->
+		<nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-900/[0.06]">
+			<div class="max-w-4xl mx-auto px-6 h-[60px] flex items-center justify-between">
+				<a href="index.html" class="font-bold text-xl text-accent">GA</a>
+				<ul class="flex items-center gap-6 text-sm font-medium list-none">
+					<li><a href="index.html#about" class="hover:text-accent transition-colors">About</a></li>
+					<li><a href="index.html#interests" class="hover:text-accent transition-colors">Interests</a></li>
+					<li><a href="index.html#activities" class="hover:text-accent transition-colors">Activities</a></li>
+					<li><a href="logs.html" class="hover:text-accent transition-colors">Logs</a></li>
+					<li><a href="contact.html" class="bg-accent text-white px-4 py-1.5 rounded-full hover:bg-accent-dark transition-colors">Contact</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<main class="pt-24 pb-20 px-6 max-w-4xl mx-auto">
+
+			<!-- Page header -->
+			<header class="text-center mb-12">
+				<h1 class="text-4xl font-bold mb-3">My Interests</h1>
+				<p class="text-slate-500 text-lg">A few things I'm passionate about.</p>
+			</header>
+
+			<!-- Card grid -->
+			<section aria-label="Interest cards">
+				<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 list-none p-0">
+
+					<!-- Card 1 -->
+					<li class="bg-white/75 border border-slate-900/[0.08] rounded-2xl shadow-md p-8 flex flex-col gap-4 hover:-translate-y-1 transition-transform">
+						<div class="text-5xl">&#127891;</div>
+						<div>
+							<h2 class="text-xl font-semibold mb-1">Entrepreneurship</h2>
+							<p class="text-slate-500 text-sm leading-relaxed">
+								I'm drawn to the process of identifying problems and building solutions. At Babson, entrepreneurship isn't just a class — it's a mindset embedded in everything we do.
+							</p>
+						</div>
+						<span class="mt-auto inline-block bg-teal-100 text-accent text-xs font-semibold px-3 py-1 rounded-full w-fit">Business</span>
+					</li>
+
+					<!-- Card 2 -->
+					<li class="bg-white/75 border border-slate-900/[0.08] rounded-2xl shadow-md p-8 flex flex-col gap-4 hover:-translate-y-1 transition-transform">
+						<div class="text-5xl">&#127936;</div>
+						<div>
+							<h2 class="text-xl font-semibold mb-1">Basketball</h2>
+							<p class="text-slate-500 text-sm leading-relaxed">
+								Basketball has been a constant in my life. The discipline of daily practice, the strategy of reading a defense, and the trust built with teammates all carry over into how I approach school and work.
+							</p>
+						</div>
+						<span class="mt-auto inline-block bg-teal-100 text-accent text-xs font-semibold px-3 py-1 rounded-full w-fit">Athletics</span>
+					</li>
+
+					<!-- Card 3 -->
+					<li class="bg-white/75 border border-slate-900/[0.08] rounded-2xl shadow-md p-8 flex flex-col gap-4 hover:-translate-y-1 transition-transform">
+						<div class="text-5xl">&#128187;</div>
+						<div>
+							<h2 class="text-xl font-semibold mb-1">Web Development</h2>
+							<p class="text-slate-500 text-sm leading-relaxed">
+								Learning to build for the web has opened up a new way of thinking about products. HTML, CSS, and the logic behind how browsers work have quickly become skills I enjoy sharpening.
+							</p>
+						</div>
+						<span class="mt-auto inline-block bg-teal-100 text-accent text-xs font-semibold px-3 py-1 rounded-full w-fit">Technology</span>
+					</li>
+
+					<!-- Card 4 -->
+					<li class="bg-white/75 border border-slate-900/[0.08] rounded-2xl shadow-md p-8 flex flex-col gap-4 hover:-translate-y-1 transition-transform">
+						<div class="text-5xl">&#128200;</div>
+						<div>
+							<h2 class="text-xl font-semibold mb-1">Business Strategy</h2>
+							<p class="text-slate-500 text-sm leading-relaxed">
+								I love breaking down how companies grow — what markets they target, how they differentiate, and what decisions separate the ones that thrive from the ones that don't.
+							</p>
+						</div>
+						<span class="mt-auto inline-block bg-teal-100 text-accent text-xs font-semibold px-3 py-1 rounded-full w-fit">Strategy</span>
+					</li>
+
+				</ul>
+			</section>
+
+		</main>
+
+		<footer class="border-t border-slate-900/[0.06] py-6 text-center text-sm text-slate-400">
+			<p>&copy; 2025 Gavin Aydelotte. Built from scratch.</p>
+		</footer>
+
+	</body>
+</html>
