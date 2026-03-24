@@ -1,0 +1,33 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width",
+        initial-scale=1.0 />
+        <title>JavaScript Practice</title> 
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                    margin-top: 50px;
+                }
+                button {
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+            </style>  
+    </head>
+    <body>
+        <p>JavaScript Practice</p>
+        <h1>Heading</h1>
+        <button>Click Me</button>
+        <script>
+            document.querySelector("button").addEventListener
+          ("click", function() {
+            document.querySelector("h1").textContent = "Heading Clicked!"
+            document.querySelector("h1").style.color = "red";
+            console.log("Button Clicked!");
+            });
+        </script>
+</body>
+</html>
