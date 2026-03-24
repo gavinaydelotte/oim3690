@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitLog</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #161920;
+      --card: #1e2230;
+      --border: #2a2f42;
+      --accent-a: #6c63ff;
+      --accent-b: #ff6584;
+      --accent-c: #43e97b;
+      --text: #e8eaf6;
+      --muted: #6b7280;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #1a1040 0%, #0d0f14 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    /* ── DATE STRIP ── */
+    .date-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px 24px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .date-strip button {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .date-strip button:hover { border-color: var(--accent-a); color: var(--accent-a); }
+
+    .date-strip span {
+      font-weight: 600;
+      font-size: 0.95rem;
+      min-width: 160px;
+      text-align: center;
+    }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      max-width: 800px;
+      margin: 24px auto 0;
+      padding: 0 16px;
+      gap: 8px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-btn.active-workout {
+      background: linear-gradient(135deg, #2d2060, #1a1040);
+      border-color: var(--accent-a);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(108,99,255,0.2);
+    }
+
+    .tab-btn.active-meals {
+      background: linear-gradient(135deg, #3d1025, #1a0a14);
+      border-color: var(--accent-b);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255,101,132,0.2);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 800px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    .section { display: none; }
+    .section.visible { display: block; }
+
+    /* ── STATS ROW ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-card .val {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .stat-card .lbl {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .stat-card.purple .val { color: var(--accent-a); }
+    .stat-card.pink .val   { color: var(--accent-b); }
+    .stat-card.green .val  { color: var(--accent-c); }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-card h2 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .form-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .form-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .form-grid.cols-4 { grid-template-columns: 2fr 1fr 1fr 1fr; }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-field label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-field input,
+    .form-field select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 9px 12px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus { border-color: var(--accent-a); }
+
+    .form-field select option { background: var(--card); }
+
+    .add-btn {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .add-btn:hover { opacity: 0.88; }
+    .add-btn:active { transform: scale(0.98); }
+
+    .add-btn.workout-btn {
+      background: linear-gradient(90deg, var(--accent-a), #9b59b6);
+      color: #fff;
+    }
+
+    .add-btn.meal-btn {
+      background: linear-gradient(90deg, var(--accent-b), #f39c12);
+      color: #fff;
+    }
+
+    /* ── LOG LIST ── */
+    .log-section h2 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .log-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .log-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .log-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .log-icon.workout { background: rgba(108,99,255,0.15); }
+    .log-icon.meal    { background: rgba(255,101,132,0.15); }
+
+    .log-info { flex: 1; min-width: 0; }
+
+    .log-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .log-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .log-meta span {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .tag.workout { background: rgba(108,99,255,0.2); color: var(--accent-a); border: 1px solid rgba(108,99,255,0.3); }
+    .tag.breakfast { background: rgba(243,156,18,0.2); color: #f39c12; border: 1px solid rgba(243,156,18,0.3); }
+    .tag.lunch { background: rgba(67,233,123,0.2); color: var(--accent-c); border: 1px solid rgba(67,233,123,0.3); }
+    .tag.dinner { background: rgba(255,101,132,0.2); color: var(--accent-b); border: 1px solid rgba(255,101,132,0.3); }
+    .tag.snack { background: rgba(149,165,166,0.2); color: #95a5a6; border: 1px solid rgba(149,165,166,0.3); }
+
+    .del-btn {
+      background: none;
+      border: none;
+      color: var(--border);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+      flex-shrink: 0;
+    }
+
+    .del-btn:hover { color: var(--accent-b); background: rgba(255,101,132,0.1); }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      background: var(--card);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+
+    .empty-state .icon { font-size: 2.5rem; margin-bottom: 8px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 500px) {
+      .form-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+      .form-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stats .stat-card:last-child { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>&#9889; FitLog</h1>
+  <p>Track your workouts &amp; nutrition</p>
+</header>
+
+<div class="date-strip">
+  <button onclick="shiftDay(-1)">&#8249;</button>
+  <span id="date-label"></span>
+  <button onclick="shiftDay(1)">&#8250;</button>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active-workout" id="tab-workout" onclick="switchTab('workout')">
+    &#128170; Workouts
+  </button>
+  <button class="tab-btn" id="tab-meals" onclick="switchTab('meals')">
+    &#127829; Meals
+  </button>
+</div>
+
+<main>
+
+  <!-- ══ WORKOUTS SECTION ══ -->
+  <div class="section visible" id="section-workout">
+
+    <div class="stats">
+      <div class="stat-card purple">
+        <div class="val" id="stat-exercises">0</div>
+        <div class="lbl">Exercises</div>
+      </div>
+      <div class="stat-card green">
+        <div class="val" id="stat-sets">0</div>
+        <div class="lbl">Total Sets</div>
+      </div>
+      <div class="stat-card pink">
+        <div class="val" id="stat-volume">0</div>
+        <div class="lbl">Volume (lbs)</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2>&#43; Add Exercise</h2>
+      <div class="form-grid cols-4">
+        <div class="form-field">
+          <label>Exercise</label>
+          <input type="text" id="w-exercise" placeholder="e.g. Bench Press" autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label>Sets</label>
+          <input type="number" id="w-sets" placeholder="3" min="1">
+        </div>
+        <div class="form-field">
+          <label>Reps</label>
+          <input type="number" id="w-reps" placeholder="10" min="1">
+        </div>
+        <div class="form-field">
+          <label>Weight (lbs)</label>
+          <input type="number" id="w-weight" placeholder="135" min="0" step="2.5">
+        </div>
+      </div>
+      <div class="form-grid cols-2">
+        <div class="form-field">
+          <label>Muscle Group</label>
+          <select id="w-muscle">
+            <option value="">Select...</option>
+            <option>Chest</option>
+            <option>Back</option>
+            <option>Shoulders</option>
+            <option>Biceps</option>
+            <option>Triceps</option>
+            <option>Legs</option>
+            <option>Glutes</option>
+            <option>Core</option>
+            <option>Cardio</option>
+            <option>Full Body</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Notes</label>
+          <input type="text" id="w-notes" placeholder="e.g. felt strong today" autocomplete="off">
+        </div>
+      </div>
+      <button class="add-btn workout-btn" onclick="addWorkout()">Log Exercise</button>
+    </div>
+
+    <div class="log-section">
+      <h2>Today's Workout</h2>
+      <div class="log-list" id="workout-list"></div>
+    </div>
+
+  </div>
+
+  <!-- ══ MEALS SECTION ══ -->
+  <div class="section" id="section-meals">
+
+    <div class="stats">
+      <div class="stat-card pink">
+        <div class="val" id="stat-calories">0</div>
+        <div class="lbl">Calories</div>
+      </div>
+      <div class="stat-card green">
+        <div class="val" id="stat-protein">0g</div>
+        <div class="lbl">Protein</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="val" id="stat-meals">0</div>
+        <div class="lbl">Meals Logged</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2>&#43; Log Meal</h2>
+      <div class="form-grid cols-3">
+        <div class="form-field">
+          <label>Meal Type</label>
+          <select id="m-type">
+            <option value="Breakfast">&#127774; Breakfast</option>
+            <option value="Lunch">&#9728; Lunch</option>
+            <option value="Dinner">&#127764; Dinner</option>
+            <option value="Snack">&#127822; Snack</option>
+          </select>
+        </div>
+        <div class="form-field" style="grid-column: span 2;">
+          <label>Food / Meal Name</label>
+          <input type="text" id="m-food" placeholder="e.g. Grilled chicken & rice" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-grid cols-3">
+        <div class="form-field">
+          <label>Calories</label>
+          <input type="number" id="m-calories" placeholder="450" min="0">
+        </div>
+        <div class="form-field">
+          <label>Protein (g)</label>
+          <input type="number" id="m-protein" placeholder="35" min="0">
+        </div>
+        <div class="form-field">
+          <label>Notes</label>
+          <input type="text" id="m-notes" placeholder="e.g. meal prepped" autocomplete="off">
+        </div>
+      </div>
+      <button class="add-btn meal-btn" onclick="addMeal()">Log Meal</button>
+    </div>
+
+    <div class="log-section">
+      <h2>Today's Nutrition</h2>
+      <div class="log-list" id="meal-list"></div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  /* ── STATE ── */
+  let currentDate = new Date();
+  currentDate.setHours(0,0,0,0);
+
+  function dateKey(d) {
+    return d.toISOString().slice(0,10);
+  }
+
+  function loadData(key) {
+    return JSON.parse(localStorage.getItem(key) || '{}');
+  }
+
+  function saveData(key, val) {
+    localStorage.setItem(key, JSON.stringify(val));
+  }
+
+  function getDayWorkouts() {
+    const all = loadData('fitlog_workouts');
+    return all[dateKey(currentDate)] || [];
+  }
+
+  function getDayMeals() {
+    const all = loadData('fitlog_meals');
+    return all[dateKey(currentDate)] || [];
+  }
+
+  function saveDayWorkouts(arr) {
+    const all = loadData('fitlog_workouts');
+    all[dateKey(currentDate)] = arr;
+    saveData('fitlog_workouts', all);
+  }
+
+  function saveDayMeals(arr) {
+    const all = loadData('fitlog_meals');
+    all[dateKey(currentDate)] = arr;
+    saveData('fitlog_meals', all);
+  }
+
+  /* ── DATE ── */
+  const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function updateDateLabel() {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const diff = (currentDate - today) / 86400000;
+    let label = '';
+    if (diff === 0) label = 'Today';
+    else if (diff === -1) label = 'Yesterday';
+    else if (diff === 1) label = 'Tomorrow';
+    else label = DAY_NAMES[currentDate.getDay()];
+    document.getElementById('date-label').textContent =
+      `${label}, ${MONTH_NAMES[currentDate.getMonth()]} ${currentDate.getDate()}`;
+  }
+
+  function shiftDay(d) {
+    currentDate.setDate(currentDate.getDate() + d);
+    updateDateLabel();
+    renderAll();
+  }
+
+  /* ── TAB ── */
+  let activeTab = 'workout';
+
+  function switchTab(tab) {
+    activeTab = tab;
+    document.getElementById('section-workout').classList.toggle('visible', tab === 'workout');
+    document.getElementById('section-meals').classList.toggle('visible', tab === 'meals');
+    document.getElementById('tab-workout').className = 'tab-btn' + (tab === 'workout' ? ' active-workout' : '');
+    document.getElementById('tab-meals').className   = 'tab-btn' + (tab === 'meals'   ? ' active-meals'   : '');
+  }
+
+  /* ── WORKOUT ── */
+  const MUSCLE_ICONS = {
+    Chest:'&#128170;', Back:'&#129354;', Shoulders:'&#129354;',
+    Biceps:'&#128170;', Triceps:'&#128170;', Legs:'&#129470;',
+    Glutes:'&#129470;', Core:'&#128293;', Cardio:'&#127939;', 'Full Body':'&#9889;', '':'&#127947;'
+  };
+
+  function addWorkout() {
+    const ex  = document.getElementById('w-exercise').value.trim();
+    if (!ex) { document.getElementById('w-exercise').focus(); return; }
+
+    const entry = {
+      id: Date.now(),
+      exercise: ex,
+      sets:   parseInt(document.getElementById('w-sets').value)   || 0,
+      reps:   parseInt(document.getElementById('w-reps').value)   || 0,
+      weight: parseFloat(document.getElementById('w-weight').value) || 0,
+      muscle: document.getElementById('w-muscle').value,
+      notes:  document.getElementById('w-notes').value.trim()
+    };
+
+    const arr = getDayWorkouts();
+    arr.push(entry);
+    saveDayWorkouts(arr);
+
+    ['w-exercise','w-sets','w-reps','w-weight','w-notes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('w-muscle').value = '';
+    renderAll();
+    document.getElementById('w-exercise').focus();
+  }
+
+  function deleteWorkout(id) {
+    saveDayWorkouts(getDayWorkouts().filter(e => e.id !== id));
+    renderAll();
+  }
+
+  function renderWorkouts() {
+    const arr = getDayWorkouts();
+    const list = document.getElementById('workout-list');
+
+    document.getElementById('stat-exercises').textContent = arr.length;
+    document.getElementById('stat-sets').textContent = arr.reduce((a,e) => a + (e.sets||0), 0);
+    const vol = arr.reduce((a,e) => a + (e.sets||0)*(e.reps||0)*(e.weight||0), 0);
+    document.getElementById('stat-volume').textContent = vol >= 1000
+      ? (vol/1000).toFixed(1)+'k' : vol;
+
+    if (arr.length === 0) {
+      list.innerHTML = `<div class="empty-state"><div class="icon">&#127947;</div>No exercises logged yet.<br>Add your first set above!</div>`;
+      return;
+    }
+
+    list.innerHTML = arr.map(e => {
+      const icon = MUSCLE_ICONS[e.muscle] || '&#127947;';
+      const meta = [];
+      if (e.sets)   meta.push(`<span>&#128260; ${e.sets} sets</span>`);
+      if (e.reps)   meta.push(`<span>&#128257; ${e.reps} reps</span>`);
+      if (e.weight) meta.push(`<span>&#9878; ${e.weight} lbs</span>`);
+      if (e.notes)  meta.push(`<span>&#128172; ${escHtml(e.notes)}</span>`);
+      return `
+        <div class="log-item">
+          <div class="log-icon workout">${icon}</div>
+          <div class="log-info">
+            <div class="log-name">${escHtml(e.exercise)}</div>
+            <div class="log-meta">${meta.join('')}</div>
+          </div>
+          ${e.muscle ? `<span class="tag workout">${escHtml(e.muscle)}</span>` : ''}
+          <button class="del-btn" onclick="deleteWorkout(${e.id})" title="Remove">&#10005;</button>
+        </div>`;
+    }).join('');
+  }
+
+  /* ── MEALS ── */
+  const MEAL_ICONS = { Breakfast:'&#127974;', Lunch:'&#129367;', Dinner:'&#127859;', Snack:'&#127822;' };
+
+  function addMeal() {
+    const food = document.getElementById('m-food').value.trim();
+    if (!food) { document.getElementById('m-food').focus(); return; }
+
+    const entry = {
+      id: Date.now(),
+      type:     document.getElementById('m-type').value,
+      food,
+      calories: parseInt(document.getElementById('m-calories').value)  || 0,
+      protein:  parseInt(document.getElementById('m-protein').value)   || 0,
+      notes:    document.getElementById('m-notes').value.trim()
+    };
+
+    const arr = getDayMeals();
+    arr.push(entry);
+    saveDayMeals(arr);
+
+    ['m-food','m-calories','m-protein','m-notes'].forEach(id => document.getElementById(id).value = '');
+    renderAll();
+    document.getElementById('m-food').focus();
+  }
+
+  function deleteMeal(id) {
+    saveDayMeals(getDayMeals().filter(e => e.id !== id));
+    renderAll();
+  }
+
+  function renderMeals() {
+    const arr = getDayMeals();
+    const list = document.getElementById('meal-list');
+
+    document.getElementById('stat-calories').textContent = arr.reduce((a,e) => a + (e.calories||0), 0);
+    document.getElementById('stat-protein').textContent  = arr.reduce((a,e) => a + (e.protein||0), 0) + 'g';
+    document.getElementById('stat-meals').textContent    = arr.length;
+
+    if (arr.length === 0) {
+      list.innerHTML = `<div class="empty-state"><div class="icon">&#127829;</div>No meals logged yet.<br>Log your first meal above!</div>`;
+      return;
+    }
+
+    list.innerHTML = arr.map(e => {
+      const icon = MEAL_ICONS[e.type] || '&#127829;';
+      const meta = [];
+      if (e.calories) meta.push(`<span>&#128293; ${e.calories} kcal</span>`);
+      if (e.protein)  meta.push(`<span>&#128170; ${e.protein}g protein</span>`);
+      if (e.notes)    meta.push(`<span>&#128172; ${escHtml(e.notes)}</span>`);
+      const tagClass = e.type.toLowerCase();
+      return `
+        <div class="log-item">
+          <div class="log-icon meal">${icon}</div>
+          <div class="log-info">
+            <div class="log-name">${escHtml(e.food)}</div>
+            <div class="log-meta">${meta.join('')}</div>
+          </div>
+          <span class="tag ${tagClass}">${escHtml(e.type)}</span>
+          <button class="del-btn" onclick="deleteMeal(${e.id})" title="Remove">&#10005;</button>
+        </div>`;
+    }).join('');
+  }
+
+  /* ── UTILS ── */
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function renderAll() { renderWorkouts(); renderMeals(); }
+
+  /* ── ENTER KEY ── */
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    if (activeTab === 'workout') addWorkout();
+    else addMeal();
+  });
+
+  /* ── INIT ── */
+  updateDateLabel();
+  renderAll();
+</script>
+</body>
+</html>
