@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Page</title>
+</head>
+<body>
+    <input type="number" id="x" />
+    <input type="number" id="y" />
+    <button id="add">Add</button>
+    <p id="result"></p>
+    <script>
+        document.getElementById('add').addEventListener('click', function() {
+            const sum = parseFloat(document.getElementById('x').value) + parseFloat(document.getElementById('y').value);
+            document.getElementById('result').textContent = 'Result: ' + sum;
+        });
+    </script>
+</body>
+</html>

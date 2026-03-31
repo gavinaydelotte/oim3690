@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Page</title>
+</head>
+<body>
+    <input type="number" id="grade1" placeholder="Grade 1" />
+    <input type="number" id="grade2" placeholder="Grade 2" />
+    <input type="number" id="grade3" placeholder="Grade 3" />
+    <button id="calculate">Calculate Average</button>
+    <p id="average"></p>
+    <script>
+        document.getElementById('calculate').addEventListener('click', function() {
+            const grade1 = parseFloat(document.getElementById('grade1').value);
+            const grade2 = parseFloat(document.getElementById('grade2').value);
+            const grade3 = parseFloat(document.getElementById('grade3').value);
+            const average = (grade1 + grade2 + grade3) / 3;
+            document.getElementById('average').textContent = 'Average Grade: ' + average.toFixed(2);
+        if (average >= 90) {
+                document.getElementById('average').textContent += ' (A)';
+            } else if (average >= 80) {
+                document.getElementById('average').textContent += ' (B)';
+            } else if (average >= 70) {
+                document.getElementById('average').textContent += ' (C)';
+            } else if (average >= 60) {
+                document.getElementById('average').textContent += ' (D)';
+            } else {
+                document.getElementById('average').textContent += ' (F)';
+            }
+        });
+        if id="grade1" value="" || id="grade2" value="" || id="grade3" value="" {
+            alert("Please enter scores");
+        if id="grade1" value < 0 || id="grade1" value > 100 || id="grade2" value < 0 || id="grade2" value > 100 || id="grade3" value < 0 || id="grade3" value > 100 {
+            alert("Please enter valid scores between 0 and 100");
+        }
+        </script>
+</body>
+</html>
