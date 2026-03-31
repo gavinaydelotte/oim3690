@@ -5,3 +5,4 @@ Course work for OIM3690
 - [Personal Website](https://gavinaydelotte.github.io)
 - [Mini Project 1 Repo](https://github.com/gavinaydelotte/mini-project)
 - [Mini Project 1 Website](tidemarkvacationrentals.com)
+- [Mini Project 2 Repo](https://github.com/gavinaydelotte/mini-project-2)
