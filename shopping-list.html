@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping List</title>
+</head>
+<body>
+    <h1>My Shopping List</h1>
+
+    <input id="itemInput" type="text" placeholder="Add an item...">
+    <button onclick="addItem()">Add</button>
+
+    <ul id="shoppingList"></ul>
+
+    <script>
+        // Array to store shopping list items
+        const items = ["Milk", "Bread", "Eggs"];
+
+        // Display all items in the array as <li> elements
+        function displayList() {
+            let list = document.getElementById("shoppingList");
+            list.innerHTML = "";
+
+            for (let i = 0; i < items.length; i++) {
+                let li = document.createElement("li");
+                li.textContent = items[i];
+                list.appendChild(li);
+            }
+        }
+
+        // Add a new item to the array, then refresh the list
+        function addItem() {
+            let input = document.getElementById("itemInput");
+            let newItem = input.value;
+
+            if (newItem !== "") {
+                items.push(newItem);
+                input.value = "";
+                displayList();
+            }
+        }
+
+        // Show the list when the page loads
+        displayList();
+    </script>
+</body>
+</html>
