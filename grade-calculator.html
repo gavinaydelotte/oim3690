@@ -16,9 +16,19 @@
             const grade1 = parseFloat(document.getElementById('grade1').value);
             const grade2 = parseFloat(document.getElementById('grade2').value);
             const grade3 = parseFloat(document.getElementById('grade3').value);
+
+            if (isNaN(grade1) || isNaN(grade2) || isNaN(grade3)) {
+                alert("Please enter scores");
+                return;
+            }
+            if (grade1 < 0 || grade1 > 100 || grade2 < 0 || grade2 > 100 || grade3 < 0 || grade3 > 100) {
+                alert("Please enter valid scores between 0 and 100");
+                return;
+            }
+
             const average = (grade1 + grade2 + grade3) / 3;
             document.getElementById('average').textContent = 'Average Grade: ' + average.toFixed(2);
-        if (average >= 90) {
+            if (average >= 90) {
                 document.getElementById('average').textContent += ' (A)';
             } else if (average >= 80) {
                 document.getElementById('average').textContent += ' (B)';
@@ -30,11 +40,6 @@
                 document.getElementById('average').textContent += ' (F)';
             }
         });
-        if id="grade1" value="" || id="grade2" value="" || id="grade3" value="" {
-            alert("Please enter scores");
-        if id="grade1" value < 0 || id="grade1" value > 100 || id="grade2" value < 0 || id="grade2" value > 100 || id="grade3" value < 0 || id="grade3" value > 100 {
-            alert("Please enter valid scores between 0 and 100");
-        }
         </script>
 </body>
 </html>
