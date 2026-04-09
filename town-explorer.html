@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>Click</button>
+    <div id="result"></div>
+    <input type="text" id="input" placeholder="Enter town name">
+    <script>
+        const button = document.querySelector('button');
+        const result = document.querySelector('#result');
+        const input = document.querySelector('#input');
+
+        async function getTowns() {
+            const response = await fetch('https://oim.108122.xyz/mass', {
+                headers: {
+                    "X-Token": "gavingavin"
+                }
+            });
+            const data = await response.json();
+            const filter = input.value.trim().toLowerCase();
+            const filtered = filter
+                ? data.filter(town => town.town.toLowerCase().includes(filter))
+                : data;
+            result.innerHTML = `<pre>${JSON.stringify(filtered, null, 2)}</pre>`;
+        }
+
+        button.addEventListener("click", () => {
+            getTowns();
+        });
+    </script>
+</body>
+</html>
