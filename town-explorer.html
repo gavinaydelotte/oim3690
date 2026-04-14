@@ -23,11 +23,7 @@
                 }
             });
             const data = await response.json();
-            const filter = input.value.trim().toLowerCase();
-            const filtered = filter
-                ? data.filter(town => town.town.toLowerCase().includes(filter))
-                : data;
-            result.innerHTML = `<pre>${JSON.stringify(filtered, null, 2)}</pre>`;
+            result.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
         }
 
         button.addEventListener("click", () => {
