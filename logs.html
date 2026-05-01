@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Learning logs — Gavin Aydelotte">
+		<title>Logs | Gavin Aydelotte</title>
+		<link rel="icon" href="https://www.babson.edu/media/babson/assets/college-marketing-branding/ATH-logo-color-CIRCLE.png" type="image/png">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/styles.css">
+		<style>
+			.logs-hero {
+				padding: 120px 24px 60px;
+				text-align: center;
+			}
+			.logs-hero h1 {
+				font-size: clamp(1.8rem, 4vw, 2.5rem);
+				font-weight: 700;
+				margin-bottom: 12px;
+			}
+			.logs-hero p {
+				color: var(--muted);
+				font-size: 1.05rem;
+			}
+			.logs-section {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 0 24px 80px;
+				display: flex;
+				flex-direction: column;
+				gap: 24px;
+			}
+			.log-card {
+				background: var(--glass);
+				border: 1px solid rgba(11, 38, 57, 0.08);
+				border-radius: var(--radius);
+				padding: 32px;
+				box-shadow: 0 4px 24px var(--shadow);
+			}
+			.log-card h2 {
+				font-size: 1.1rem;
+				font-weight: 700;
+				margin-bottom: 12px;
+				color: var(--accent);
+			}
+			.log-card p, .log-card li {
+				font-size: 0.95rem;
+				color: var(--text);
+				line-height: 1.7;
+			}
+			.log-card ul {
+				padding-left: 20px;
+				margin: 8px 0;
+			}
+			.log-card code {
+				background: rgba(43,154,163,0.1);
+				border-radius: 4px;
+				padding: 1px 5px;
+				font-size: 0.88rem;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="nav">
+			<div class="nav-inner">
+				<a href="index.html" class="nav-brand">GA</a>
+				<div class="nav-links">
+					<a href="index.html#about">About</a>
+					<a href="index.html#interests">Interests</a>
+					<a href="index.html#activities">Activities</a>
+					<a href="logs.html">Logs</a>
+					<a href="contact.html" class="nav-cta">Contact</a>
+				</div>
+			</div>
+		</nav>
+
+		<main>
+			<header class="logs-hero">
+				<h1>Learning Logs</h1>
+				<p>Weekly reflections from OIM3690 — Web Development.</p>
+			</header>
+
+			<section class="logs-section">
+
+				<div class="log-card">
+					<h2>Week 4 — HTML Basics</h2>
+					<p>Learned to write HTML and was introduced to semantic elements like <code>&lt;header&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;ul&gt;</code>, and <code>&lt;mark&gt;</code>. Learned how to embed images and audio, and got an introduction to CSS. Also started planning my first client project — a website for my mom's vacation rental business.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 5 — CSS Styling</h2>
+					<p>Learned more intricate CSS, including how to change colors and fonts, and how cascading works — the last rule overrides earlier ones. Began building the basic outline for my mother's vacation rental website, modeled after Airbnb and VRBO.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 6 — Selectors, Flexbox & Grid</h2>
+					<p>Completed CSS Diner and learned:</p>
+					<ul>
+						<li>CSS selectors (there are a lot of them)</li>
+						<li>Flexbox layout</li>
+						<li>CSS Grid layout</li>
+						<li>Hover and transition effects</li>
+					</ul>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 7 — Forms & Responsive Design</h2>
+					<p>Covered HTML forms and CSS frameworks. Learned <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code>, <code>&lt;textarea&gt;</code>, and input types like <code>text</code>, <code>email</code>, and <code>password</code>. Also covered responsive design with the viewport meta tag and an introduction to Tailwind CSS.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 8 — JavaScript Intro</h2>
+					<p>Started learning JavaScript. Added audio and video elements to a web page, implemented collapsing text, and reviewed CSS frameworks like Tailwind and Bootstrap. Started to see <code>addEventListener</code> everywhere — still working out exactly how it fits together.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 9 — let, const & Fetch</h2>
+					<p>Built a JavaScript Todo app (Mini-Project 2 — a health and fitness tracker). Learned <code>let</code> vs. <code>const</code>: use <code>const</code> by default, switch to <code>let</code> only when the value needs to change. Also covered numbers and math in JavaScript using the <code>Math</code> object.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 10 — Conditionals, Loops & Arrays</h2>
+					<p>Learned JavaScript fundamentals including <code>if</code>/<code>else</code> conditionals, strict vs. loose equality (<code>===</code> vs. <code>==</code>), and logical operators. Also covered how loops and arrays work together using <code>for</code> and <code>while</code>. Finished Mini-Project 2 and began preparing for the JavaScript quiz.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 11 — APIs, JSON & Async</h2>
+					<p>Wrapped up loops and covered APIs, JSON, and the <code>fetch</code> function. Learned that <code>async</code>/<code>await</code> is required when fetching data from external sources.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 12 — API Keys & Mini-Project 3</h2>
+					<p>Learned about API keys and how to protect them using <code>.gitignore</code>. Used an OpenAI key to build a textbox that responds to questions using AI. Also took the JavaScript quiz and worked on Mini-Project 3, PokeMatchup.</p>
+				</div>
+
+				<div class="log-card">
+					<h2>Week 13 — Timers, Storage & Deployment</h2>
+					<p>Covered extra JavaScript features including <code>setTimeout</code>, <code>setInterval</code>, <code>localStorage</code>, and the Geolocation API. Got an overview of frameworks like React, Vue, Next.js, and Svelte. Discussed deployment options — GitHub Pages, Vercel, and Render — and began preparing for Demo Day. Started my final project: a quiz creator using AI to generate flashcards, with a multiplayer mode using Firebase.</p>
+				</div>
+
+			</section>
+		</main>
+
+		<footer class="footer">
+			<div class="container">
+				<p>&copy; 2025 Gavin Aydelotte. Built from scratch.</p>
+			</div>
+		</footer>
+	</body>
+</html>

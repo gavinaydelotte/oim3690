@@ -49,7 +49,7 @@
     <div class="demo-section">
       <h3>2. Growing Mailbox</h3>
       <p>Hover over the mailbox to make it grow!</p>
-      <img id="img-mailbox" src="images/mailbox.png" alt="mailbox" width="30" />
+      <span id="img-mailbox" style="font-size:30px; display:inline-block; cursor:pointer;">📬</span>
     </div>
 
     <div class="demo-section">
@@ -94,14 +94,14 @@
 
       const myImg = document.querySelector("#img-mailbox");
       function enlargeImage() {
-        let w = myImg.width;
-        w = w + 10;
-        if (w > 200) w = 30;
-        myImg.width = w;
+        let size = parseInt(myImg.style.fontSize) || 30;
+        size = size + 10;
+        if (size > 200) size = 30;
+        myImg.style.fontSize = size + "px";
       }
       myImg.addEventListener("mouseover", function () {
         enlargeImage();
-        console.log(("Input event fired"))
+        console.log("Input event fired");
       });
 
       document.getElementById("timeBtn").addEventListener("click", () => {
